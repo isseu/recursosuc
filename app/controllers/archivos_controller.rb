@@ -1,6 +1,6 @@
 class ArchivosController < ApplicationController
   authorize_resource
-  before_action :set_archivo, only: [:show, :update, :edit, :destroy]
+  before_action :set_archivo, only: [:show, :update, :edit, :destroy, :descargar]
 
   def index
     @archivos = Archivo.all
@@ -39,6 +39,10 @@ class ArchivosController < ApplicationController
   end
 
   def descargar
+    send_file @archivo.documento.path,
+              :filename => @archivo.documento_file_name,
+              :type => @archivo.documento_content_type,
+              :disposition => 'attachment'
   end
 
   private
