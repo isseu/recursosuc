@@ -13,5 +13,6 @@
  *= require_self
  *= require_tree .
  *= style
+ *= require devise_bootstrap_views
  */
 

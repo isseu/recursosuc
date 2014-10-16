@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Recursosuc</title>
+  <title><%= full_title(yield(:title)) %></title>
+  <%= favicon_link_tag 'favicon.png' %>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -33,6 +34,7 @@
                   <p class="navbar-text"><strong><%= current_user.email %></strong></p>
                 <% end %>
                 <li><a href="#">Acerca de</a></li>
+                <li <%= current_page?(new_archivo_path)?'class=active':'' %>><%= link_to "Subir Archivo", new_archivo_path %></li>
                 <% if user_signed_in? %>
                   <li <%= current_page?(edit_user_registration_path)?'class=active':'' %>><%= link_to "Editar Perfil", edit_user_registration_path %></li>
                   <li><%= link_to "Salir", destroy_user_session_path, method: :delete %></li>
@@ -67,17 +69,16 @@
           </div>
         </div>
       </div>
-      <!-- EN BUSQUEDA -->
-      <%= yield %>
-      <!-- FIN BUSQUEDA -->
-      </form>
+      <div class="container contcontenido">
+        <%= yield %>
+      </div>
       <div id="push"></div>
     </div>
 
     <div id="footer">
       <div id="creditos">
         <hr>
-        <p class="muted credit"><small><a href="#">RecursosUC</a> © 2013</small></p>
+        <p class="text-muted"><small><a href="#">RecursosUC</a> © 2013</small></p>
       </div>
     </div>
     <script>
