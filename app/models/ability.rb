@@ -28,6 +28,17 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/ryanb/cancan/wiki/Defining-Abilities
-    user ||= User.new # guest user
+
+    user ||= User.new
+
+    if user.role? :administrador
+      can :manage, :all
+    end
+
+    if user.role? :usuario
+      can [:destroy, :update], Archivo, :user_id => user.id
+      can [:read, :create], Archivo
+    end
+    can :read, :all
   end
 end

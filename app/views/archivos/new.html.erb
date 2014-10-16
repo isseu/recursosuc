@@ -1,0 +1,5 @@
+<h1>Subir archivo</h1>
+<%= form_for @archivo, :url => archivos_path, :html => { :multipart => true } do |form| %>
+    <%= form.file_field :documento %>
+    <%= submit_tag("Subir") %>
+<% end %>

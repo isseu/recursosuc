@@ -1,0 +1,4 @@
+<h1>Lista de archivos <span class="label label-default"><%= @archivos.size %></span></h1>
+<% @archivos.each do |archivo|  %>
+    <li><%= link_to archivo.titulo, archivo %></li>
+<% end %>

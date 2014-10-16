@@ -40,4 +40,6 @@ gem 'spring',        group: :development
 
 gem 'devise'
 gem 'cancan'
+gem 'twitter-bootstrap-rails'
+gem 'paperclip', '~> 4.2'
 
