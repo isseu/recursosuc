@@ -28,6 +28,7 @@ module Recursosuc
     # config.i18n.default_locale = :de
 
     config.assets.initialize_on_precompile = false
-    config.i18n.default_locale = "es"
+    config.i18n.default_locale = 'es'
+    config.i18n.fallbacks = true # no entiendo nada, el español funciona mejor con esto
   end
 end

@@ -33,6 +33,14 @@ class Ability
 
     if user.role? :administrador
       can :manage, :all
+      can :access, :rails_admin   # grant access to rails_admin
+      can :dashboard              # grant access to the dashboard
+    end
+
+    if user.role? :moderador
+      can :access, :rails_admin   # grant access to rails_admin
+      can :dashboard              # grant access to the dashboard
+      can :manage, Archivo
     end
 
     if user.role? :usuario

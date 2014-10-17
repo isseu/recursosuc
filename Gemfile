@@ -43,4 +43,5 @@ gem 'cancan'
 gem 'twitter-bootstrap-rails'
 gem 'paperclip', '~> 4.2'
 gem 'devise-bootstrap-views'
+gem 'rails_admin'
 
