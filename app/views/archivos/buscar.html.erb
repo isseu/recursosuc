@@ -15,6 +15,9 @@
   <% end %>
   </tbody>
 </table>
+<%
+    cuantos = 10
+    if @archivos.size > cuantos %>
 <div class="row" style="text-align: center">
 <ul class="pagination">
   <li><a href="#">&laquo;</a></li>
@@ -26,3 +29,4 @@
   <li><a href="#">&raquo;</a></li>
 </ul>
 </div>
+<% end %>
