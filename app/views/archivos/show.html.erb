@@ -1,5 +1,30 @@
-<h1><%= @archivo.titulo %></h1>
-<p><%= @archivo.descripcion %></p>
-<%= image_tag @archivo.documento.url(:thumbnail) %>
-<%= button_to  download_path, :class=>"btn btn-primary btn-lg", :method => :get do%>Descargar <span class="glyphicon glyphicon-download"></span>
-<%end%>
+<div class="row">
+  <div class="col-md-5">
+    <%= image_tag @archivo.documento.url(:thumbnail), :class=>"img-rounded"%>
+  </div>
+  <div class="col-md-7">
+    <div class="row">
+      <h1><%= int2tipo(@archivo.tipo) %> - <%= @archivo.curso %></h1>
+    </div>
+    <div class="row">
+      <h3><%= int2semestre(@archivo.semestre) %></h3>
+    </div>
+    <div class="row">
+      <strong>Tipo:</strong> <%= @archivo.documento_content_type %>
+    </div>
+    <div class="row">
+      <strong>Tamaño:</strong> <%= number_to_human_size(@archivo.documento_file_size.to_f) %>
+    </div>
+    <div class="row">
+      <strong>Subido el </strong> <%= @archivo.documento_updated_at%>
+    </div>
+    <div class="row">
+      <p><strong>Subido por</strong> <%= @archivo.user.email %></p>
+    </div>
+  </div>
+</div>
+<div class="row" style="text-align: center">
+  <%= button_to  download_path, :class=>"btn btn-primary btn-lg boton-descarga", :method => :get do%>
+      Descargar <span class="glyphicon glyphicon-download"></span>
+  <%end%>
+</div>

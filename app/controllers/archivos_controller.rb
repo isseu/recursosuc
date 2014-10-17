@@ -3,6 +3,10 @@ class ArchivosController < ApplicationController
   before_action :set_archivo, only: [:show, :update, :edit, :destroy, :descargar]
 
   def index
+    if not params[:busqueda].nil?
+      @archivos = Archivo.all
+      render :buscar
+    end
     @archivos = Archivo.all
   end
 
@@ -24,6 +28,7 @@ class ArchivosController < ApplicationController
 
   def create
     @archivo = Archivo.new(archivo_params)
+    @archivo.user = current_user
     if @archivo.save
       redirect_to @archivo, notice: 'Archivo fue creado correctamente'
     else
@@ -54,9 +59,9 @@ class ArchivosController < ApplicationController
       end
     end
     def update_params
-      params.require(:archivo).permit(:documento, :titulo, :descripcion)
+      params.require(:archivo).permit(:documento, :ano, :curso, :semestre, :tipo, :profesor)
     end
     def archivo_params
-      params.require(:archivo).permit(:documento, :titulo, :descripcion)
+      params.require(:archivo).permit(:documento, :ano, :curso, :semestre, :tipo, :profesor)
     end
 end

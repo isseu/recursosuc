@@ -1,0 +1,28 @@
+<h1>Resultados de: <%= params[:busqueda] %> <span class="label label-default"><%= @archivos.size %></span></h1>
+<table class="table table-hover">
+  <thead>
+  <th>Nombre</th><th>Ramo</th><th>Año</th><th>Semestre</th><th>Profesor</th>
+  </thead>
+  <tbody>
+  <% @archivos.each do |archivo|  %>
+      <tr>
+        <td><span class="glyphicon glyphicon-file"></span> <%= link_to (int2tipo(archivo.tipo)), archivo %></td>
+        <td><%= archivo.curso %></td>
+        <td><%= archivo.ano %></td>
+        <td><%= archivo.semestre %></td>
+        <td><%= archivo.profesor %></td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<div class="row" style="text-align: center">
+<ul class="pagination">
+  <li><a href="#">&laquo;</a></li>
+  <li><a href="#">1</a></li>
+  <li><a href="#">2</a></li>
+  <li><a href="#">3</a></li>
+  <li><a href="#">4</a></li>
+  <li><a href="#">5</a></li>
+  <li><a href="#">&raquo;</a></li>
+</ul>
+</div>

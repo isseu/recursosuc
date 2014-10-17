@@ -7,4 +7,39 @@ module ApplicationHelper
       "#{base_title} | #{page_title}"
     end
   end
+  def int2tipo(tipo)
+    case tipo
+      when 0
+        return "Interrogación 1"
+      when 1
+        return "Interrogación 2"
+      when 2
+        return "Interrogación 3"
+      when 4
+        return "Ayudantia"
+      else
+        return "Otro"
+    end
+  end
+  def int2semestre(sem)
+    case sem
+      when 0
+        return "1er semestre"
+      when 1
+        return "2do semestre"
+      when 2
+        return "3er semestre"
+      when 3
+        return "TAV"
+    end
+  end
+  def to_filesize
+    {
+        'B'  => 1024,
+        'KB' => 1024 * 1024,
+        'MB' => 1024 * 1024 * 1024,
+        'GB' => 1024 * 1024 * 1024 * 1024,
+        'TB' => 1024 * 1024 * 1024 * 1024 * 1024
+    }.each_pair { |e, s| return "#{(self.to_f / (s / 1024)).round(2)}#{e}" if self < s }
+  end
 end

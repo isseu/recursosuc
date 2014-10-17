@@ -61,3 +61,9 @@ a, a:hover {
     width: 80%;
     margin: 0 auto 0;
 }
+.boton-descarga {
+    margin-top: 20px;
+    width: 50%;
+    height: 50px;
+    font-size: 25px;
+}

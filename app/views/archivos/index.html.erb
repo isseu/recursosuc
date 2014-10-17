@@ -1,4 +1,17 @@
-<h1>Lista de archivos <span class="label label-default"><%= @archivos.size %></span></h1>
-<% @archivos.each do |archivo|  %>
-    <li><%= link_to archivo.titulo, archivo %></li>
-<% end %>
+<h1>Ultimos archivos <span class="label label-default"><%= @archivos.size %></span></h1>
+<table class="table table-hover">
+  <thead>
+    <th>Nombre</th><th>Ramo</th><th>Año</th><th>Semestre</th><th>Profesor</th>
+  </thead>
+  <tbody>
+    <% @archivos.each do |archivo|  %>
+       <tr>
+         <td><span class="glyphicon glyphicon-file"></span> <%= link_to (int2tipo(archivo.tipo)), archivo %></td>
+         <td><%= archivo.curso %></td>
+         <td><%= archivo.ano %></td>
+         <td><%= archivo.semestre %></td>
+         <td><%= archivo.profesor %></td>
+       </tr>
+      <% end %>
+  </tbody>
+</table>

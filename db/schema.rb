@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016023411) do
+ActiveRecord::Schema.define(version: 20141016235040) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20141016023411) do
     t.string   "documento_content_type"
     t.integer  "documento_file_size"
     t.datetime "documento_updated_at"
+    t.string   "profesor"
+    t.integer  "semestre"
+    t.integer  "ano"
+    t.integer  "tipo"
+    t.string   "curso"
   end
 
   add_index "archivos", ["user_id"], name: "index_archivos_on_user_id", using: :btree

@@ -4,37 +4,37 @@
     <div class="form-group">
       <label for="ramo" class="col-sm-2">Ramo</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control " id="ramo" placeholder="Programación Avanzada (IIC2233)" required>
+        <input type="text" class="form-control " name="archivo[curso]" id="ramo" placeholder="Programación Avanzada (IIC2233)" required>
       </div>
     </div>
     <div class="form-group">
       <label for="profesor" class="col-sm-2">Profesor</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" id="profesor" placeholder="Benguria" required>
+        <input type="text" class="form-control" id="profesor" name="archivo[profesor]" placeholder="Benguria" required>
       </div>
     </div>
     <div class="form-group">
       <label for="ano" class="col-sm-2">Semestre y año</label>
       <div class="col-sm-10 form-inline">
-          <select class="form-control">
-            <option>1er semestre</option>
-            <option>2do semestre</option>
-            <option>TAV</option>
+          <select class="form-control" name="archivo[semestre]">
+            <option value="0">1er semestre</option>
+            <option value="1">2do semestre</option>
+            <option value="2">TAV</option>
           </select>
-        <input type="number" name="ano" class="form-control" min="1980" max="<%= Time.now.year %>" id="ano" value="<%= Time.now.year %>" required>
+        <input type="number" name="archivo[ano]" class="form-control" min="1980" max="<%= Time.now.year %>" id="ano" value="<%= Time.now.year %>" required>
       </div>
     </div>
     <div class="form-group">
       <label for="ano" class="col-sm-2">Tipo</label>
       <div class="col-sm-10">
-        <select class="form-control">
-          <option>Interrogación 1</option>
-          <option>Interrogación 2</option>
-          <option>Interrogación 3</option>
-          <option>Control</option>
-          <option>Ayudantia</option>
-          <option>Examen</option>
-          <option>Otro</option>
+        <select class="form-control" name="archivo[tipo]">
+          <option value="0">Interrogación 1</option>
+          <option value="1">Interrogación 2</option>
+          <option value="2">Interrogación 3</option>
+          <option value="3">Control</option>
+          <option value="4">Ayudantia</option>
+          <option value="5">Examen</option>
+          <option value="6">Otro</option>
         </select>
       </div>
     </div>

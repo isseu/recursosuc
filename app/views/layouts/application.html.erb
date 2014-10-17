@@ -55,13 +55,13 @@
             <div class="alert alert-warning"><strong>Atención: </strong><%= flash[:alert] %></div>
         <% end %>
         <div class="row">
-            <form class="form-inline" role="form">
+            <%= form_tag archivos_path, :method => 'get', class: "form-inline", role: "form" do %>
               <div class="input-group-btn">
-                <input type="text" class="form-control" id="buscador" placeholder="I3 Estatica y dinamica segundo semestre" required>
+                <%= text_field_tag :busqueda, params[:busqueda], placeholder: "I3 Estatica y dinamica segundo semestre", class: "form-control", id: "buscador" %>
                 <button type="button" class="btn btn-success" id="boton-avanzado">Avanzado <span class="caret"></span></button>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-                </div>
-            </form>
+              </div>
+            <% end %>
         </div>
         <div class="container" id="editor-input">
           <div class="jumbotron">
