@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017042019) do
+ActiveRecord::Schema.define(version: 20141017173117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,9 +33,18 @@ ActiveRecord::Schema.define(version: 20141017042019) do
     t.integer  "ano"
     t.integer  "tipo"
     t.string   "curso"
+    t.integer  "curso_id"
   end
 
+  add_index "archivos", ["curso_id"], name: "index_archivos_on_curso_id", using: :btree
   add_index "archivos", ["user_id"], name: "index_archivos_on_user_id", using: :btree
+
+  create_table "cursos", force: true do |t|
+    t.string   "nombre"
+    t.string   "sigla"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false

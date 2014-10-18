@@ -11,4 +11,5 @@ class Archivo < ActiveRecord::Base
   validates :curso, presence: true
 
   belongs_to :user
+  belongs_to :curso
 end

@@ -4,7 +4,7 @@
   </div>
   <div class="col-md-7">
     <div class="row">
-      <h1><%= int2tipo(@archivo.tipo) %> - <%= @archivo.curso %></h1>
+      <h1><%= int2tipo(@archivo.tipo) %> - <%= @archivo.curso.nombre + " - " + @archivo.curso.sigla %></h1>
     </div>
     <div class="row">
       <h3><%= int2semestre(@archivo.semestre) %></h3>
@@ -19,7 +19,7 @@
       <strong>Subido el </strong> <%= @archivo.documento_updated_at%>
     </div>
     <div class="row">
-      <p><strong>Subido por</strong> <%= @archivo.user.email %></p>
+      <p><strong>Subido por</strong> <%= quitararrobauc(@archivo.user.email) %></p>
     </div>
   </div>
 </div>

@@ -11,14 +11,14 @@ class ArchivosController < ApplicationController
   end
 
   def edit
+  end
+
+  def update
     if @archivo.update(update_params)
       redirect_to @archivo, notice: 'Archivo fue actualizado correctamente.'
     else
       render :edit
     end
-  end
-
-  def update
   end
 
   def destroy
@@ -29,8 +29,9 @@ class ArchivosController < ApplicationController
   def create
     @archivo = Archivo.new(archivo_params)
     @archivo.user = current_user
+    @archivo.curso = Curso.find(params[:archivo][:curso])
     if @archivo.save
-      redirect_to @archivo, notice: 'Archivo fue creado correctamente'
+      redirect_to @archivo, notice: 'Archivo fue creado correctamente.'
     else
       render :new
     end
@@ -38,6 +39,7 @@ class ArchivosController < ApplicationController
 
   def new
     @archivo = Archivo.new
+    @cursos = Curso.all
   end
 
   def show
@@ -59,9 +61,9 @@ class ArchivosController < ApplicationController
       end
     end
     def update_params
-      params.require(:archivo).permit(:documento, :ano, :curso, :semestre, :tipo, :profesor)
+      params.require(:archivo).permit(:documento, :ano, :semestre, :tipo, :profesor)
     end
     def archivo_params
-      params.require(:archivo).permit(:documento, :ano, :curso, :semestre, :tipo, :profesor)
+      params.require(:archivo).permit(:documento, :ano, :semestre, :tipo, :profesor)
     end
 end

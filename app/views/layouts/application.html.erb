@@ -31,7 +31,7 @@
           <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <% if user_signed_in? %>
-                  <p class="navbar-text"><strong><%= current_user.email %></strong></p>
+                  <p class="navbar-text"><strong><%= quitararrobauc(current_user.email) %></strong></p>
                 <% end %>
                 <li <%= current_page?(acerca_de_path)?'class=active':'' %>><%= link_to "Acerca de", acerca_de_path %></li>
                 <li <%= current_page?(new_archivo_path)?'class=active':'' %>><%= link_to "Subir Archivo", new_archivo_path %></li>

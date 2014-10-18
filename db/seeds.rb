@@ -8,3 +8,5 @@
 
 user = User.create!(email: 'ejcorrea@uc.cl', role: :administrador, password: 'mamamia123', password_confirmation: 'mamamia123', confirmed_at: Time.now)
 user = User.create!(email: 'ejcorrea2@uc.cl', role: :moderador, password: 'mamamia123', password_confirmation: 'mamamia123', confirmed_at: Time.now)
+
+Curso.create!(nombre: "Programación Avanzada", sigla: "IIC2233")
