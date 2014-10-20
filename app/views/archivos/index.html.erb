@@ -9,7 +9,7 @@
          <td><span class="glyphicon glyphicon-file"></span> <%= link_to (int2tipo(archivo.tipo)), archivo %></td>
          <td><%= archivo.curso.nombre + " - " + archivo.curso.sigla %></td>
          <td><%= archivo.ano %></td>
-         <td><%= archivo.semestre %></td>
+         <td><%= int2semestre(archivo.semestre) %></td>
          <td><%= archivo.profesor %></td>
        </tr>
       <% end %>
