@@ -1,10 +1,10 @@
 <h1>Subir archivo PDF <span class="glyphicon glyphicon-upload"></span></h1>
-<%= form_for @archivo, :url => archivos_path, :html => { :multipart => true, :class => 'form-horizontal' } do |form| %>
+<%= form_for @archivo, :url => archivos_path, :html => { :multipart => true, :class => 'form-horizontal',  :onsubmit => 'return validateform();'  } do |form| %>
     <p>Todos los datos son obligatorios para así tener la web lo más ordenada posible.</p>
     <div class="form-group curso-group">
-      <label for="ramo" class="col-sm-2">Ramo</label>
+      <label for="ramoInput" class="col-sm-2">Ramo</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control cursosinput typeahead" name="archivo[curso]" id="ramo" placeholder="Programación Avanzada (IIC2233)" required>
+        <input type="text" class="form-control cursosinput typeahead" name="archivo[curso]" id="ramoInput" placeholder="Programación Avanzada (IIC2233)" required>
       </div>
     </div>
     <div class="form-group">
@@ -51,6 +51,7 @@
     </div>
 <% end %>
 <script>
+
     var cursos = [ <% @cursos.each do |curso| %>
         <%= raw('"') + curso.nombre + ' ( ' + curso.sigla + ' )' + raw('"')  %>
             <% if curso != @cursos.last %>
@@ -59,11 +60,22 @@
     <% end %> ];
 
     function validateSelection() {
-        if(cursos.indexOf($(this).val()) === -1) {
-            $(".curso-group").addClass("has-error")
-        }else {
-            $(".curso-group").addClass("has-success")
+        if(cursos.indexOf($("#ramoInput").val()) === -1) {
+            $(".curso-group").removeClass("has-success");
+            $(".curso-group").addClass("has-error");
+            return false;
         }
+        $(".curso-group").removeClass("has-error");
+        $(".curso-group").addClass("has-success");
+        return true;
+    };
+
+    function validateform() {
+        if(!validateSelection()){
+            alert("Ramo invalido");
+            return false;
+        }
+        return true;
     };
 
     var engine = new Bloodhound({

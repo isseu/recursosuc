@@ -30,5 +30,6 @@ module Recursosuc
     config.assets.initialize_on_precompile = false
     config.i18n.default_locale = 'es'
     config.i18n.fallbacks = true # no entiendo nada, el español funciona mejor con esto
+    config.serve_static_assets = true # heroku
   end
 end

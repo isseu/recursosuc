@@ -29,10 +29,17 @@ class ArchivosController < ApplicationController
   def create
     @archivo = Archivo.new(archivo_params)
     @archivo.user = current_user
-    @archivo.curso = Curso.find(params[:archivo][:curso])
+
+    match = /(?<curso>.+) \( (?<sigla>.+) \)/.match(params[:archivo][:curso])
+    if match.nil?
+      @cursos = Curso.all
+      render :new, notice: 'Curso o ramo invalidos'
+    end
+    @archivo.curso = Curso.where(nombre: match['curso'], sigla: match['sigla']).take
     if @archivo.save
       redirect_to @archivo, notice: 'Archivo fue creado correctamente.'
     else
+      @cursos = Curso.all
       render :new
     end
   end
