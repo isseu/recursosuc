@@ -3,11 +3,12 @@ class ArchivosController < ApplicationController
   before_action :set_archivo, only: [:show, :update, :edit, :destroy, :descargar]
 
   def index
-    if not params[:busqueda].nil? and params[:busqueda] != ""
-      @archivos = Archivo.all
+    if not params[:busqueda].nil? and params[:busqueda] != ''
+      # sacamos cosas clave
+      @archivos ||= Archivo.buscar(params[:busqueda])
       render :buscar
     end
-    @archivos = Archivo.all.order(:created_at).limit(10)
+    @archivos = Archivo.all.order(created_at: :desc).limit(20)
   end
 
   def edit
@@ -32,21 +33,18 @@ class ArchivosController < ApplicationController
 
     match = /(?<curso>.+) \( (?<sigla>.+) \)/.match(params[:archivo][:curso])
     if match.nil?
-      @cursos = Curso.all
       render :new, notice: 'Curso o ramo invalidos'
     end
-    @archivo.curso = Curso.where(nombre: match['curso'], sigla: match['sigla']).take
+    @archivo.curso = Curso.where(nombre: match['curso'], sigla: match['sigla']).first
     if @archivo.save
       redirect_to @archivo, notice: 'Archivo fue creado correctamente.'
     else
-      @cursos = Curso.all
       render :new
     end
   end
 
   def new
     @archivo = Archivo.new
-    @cursos = Curso.all
   end
 
   def show
@@ -60,6 +58,7 @@ class ArchivosController < ApplicationController
   end
 
   private
+
     def set_archivo
       if params[:id] and params[:id] =~ /^\d+$/
         @archivo = Archivo.find(params[:id])
@@ -67,9 +66,11 @@ class ArchivosController < ApplicationController
         redirect_to root_path
       end
     end
+
     def update_params
       params.require(:archivo).permit(:documento, :ano, :semestre, :tipo, :profesor)
     end
+
     def archivo_params
       params.require(:archivo).permit(:documento, :ano, :semestre, :tipo, :profesor)
     end

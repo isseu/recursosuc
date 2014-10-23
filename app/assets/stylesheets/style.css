@@ -54,7 +54,7 @@ a, a:hover {
 	padding-left: 50px;
 }
 .contcontenido {
-    margin-top: 30px;
+    margin-top: 10px;
     width: 100%;
 }
 .panel {
@@ -118,4 +118,11 @@ a, a:hover {
 }
 .tt-suggestion p {
     margin: 0;
+}
+#editor-input .jumbotron {
+    padding: 30px;
+    text-align: left;
+}
+label {
+    font-size: 15px;
 }

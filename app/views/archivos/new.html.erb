@@ -51,7 +51,7 @@
     </div>
 <% end %>
 <script>
-
+    <% @cursos = Curso.all%>
     var cursos = [ <% @cursos.each do |curso| %>
         <%= raw('"') + curso.nombre + ' ( ' + curso.sigla + ' )' + raw('"')  %>
             <% if curso != @cursos.last %>
@@ -100,5 +100,4 @@
         displayKey: 'value',
         source: engine.ttAdapter()
     }).blur(validateSelection);
-
 </script>

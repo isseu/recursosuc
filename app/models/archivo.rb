@@ -12,4 +12,30 @@ class Archivo < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :curso
+
+  def self.buscar(busqueda)
+    condiciones = []
+    #sigla = /((\s|^)sigla\:.+?(\s|$))/i.match(busqueda)
+    #if not sigla.nil?
+    #  conditions.push(["archivo.sigla LIKE ?", "%#{sigla['sigla']}%"])
+    #else
+    #  nil
+    #end
+    condiciones.push(["archivos.nombre LIKE ?", "%#{busqueda}%"])
+    Archivo.where(conditions(condiciones))
+  end
+
+  private
+
+    def self.conditions(condiciones)
+      [conditions_clauses(condiciones).join(' AND '), *conditions_options(condiciones)]
+    end
+
+    def self.conditions_clauses(condiciones)
+      condiciones.map { |condition| condition.first }
+    end
+
+    def self.conditions_options(condiciones)
+      condiciones.map { |condition| condition[1..-1] }.flatten
+    end
 end
