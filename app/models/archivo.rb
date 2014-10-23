@@ -21,7 +21,14 @@ class Archivo < ActiveRecord::Base
     #else
     #  nil
     #end
-    condiciones.push(["archivos.nombre LIKE ?", "%#{busqueda}%"])
+    tipo = /(\s|^)tipo\:(?<tipo>.+?)(\s|$)/i.match(busqueda)
+    busqueda
+    if not tipo.nil?
+      condiciones.push(["archivos.tipo = ?", tipo['tipo']])
+    else
+      nil
+    end
+    #condiciones.push(["archivos.documento_file_name LIKE ?", "%#{busqueda}%"])
     Archivo.where(conditions(condiciones))
   end
 
