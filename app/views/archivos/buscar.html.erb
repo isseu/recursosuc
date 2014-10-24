@@ -1,7 +1,11 @@
-<h1>Se encontraron <span class="label label-default"><%= @archivos.size %></span> resultados</h1>
+<% if @archivos.size == 0 %>
+    <h1>No se encontraron resultados</h1>
+<% else %>
+    <h1>Se encontraron <span class="label label-default"><%= @archivos.size %></span> resultados</h1>
+<% end %>
 <%= render "tablaArchivos" %>
 <%
-    cuantos = 10
+    cuantos = 20
     if @archivos.size > cuantos %>
 <div class="row" style="text-align: center">
     <ul class="pagination">

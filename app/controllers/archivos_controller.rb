@@ -9,6 +9,7 @@ class ArchivosController < ApplicationController
       render :buscar
     end
     @archivos = Archivo.all.order(created_at: :desc).limit(20)
+    @archivos2 = Archivo.all.order(descargas: :desc).limit(20)
   end
 
   def edit
@@ -55,6 +56,8 @@ class ArchivosController < ApplicationController
               :filename => @archivo.documento_file_name,
               :type => @archivo.documento_content_type,
               :disposition => 'attachment'
+    @archivo.descargas += 1;
+    @archivo.save!
   end
 
   private

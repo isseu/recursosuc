@@ -19,7 +19,10 @@
       <strong>Subido el </strong> <%= @archivo.documento_updated_at%>
     </div>
     <div class="row">
-      <p><strong>Subido por</strong> <%= quitararrobauc(@archivo.user.email) %></p>
+      <strong>Subido por</strong> <%= quitararrobauc(@archivo.user.email) %>
+    </div>
+    <div class="row">
+      <p><strong>Descargas</strong> <%= @archivo.descargas %></p>
     </div>
   </div>
 </div>

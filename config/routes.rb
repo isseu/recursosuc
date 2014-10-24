@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   resources :archivos
+  get 'cursos/:id' => 'cursos#show', :as => :curso
   get 'archivos/:id/descargar' => 'archivos#descargar', :as => :download
   get 'acerca_de' => 'buscador#acerca_de', :as => :acerca_de
   # You can have the root of your site routed with "root"

@@ -57,45 +57,66 @@
         <div class="row">
             <%= form_tag archivos_path, :method => 'get', class: "form-inline", role: "form" do %>
               <div class="input-group-btn">
-                <%= text_field_tag :busqueda, params[:busqueda], placeholder: "I3 Estatica y dinamica segundo semestre", class: "form-control", id: "buscador" %>
-                <button type="button" class="btn btn-success" id="boton-avanzado">Avanzado <span class="caret"></span></button>
+                <%= text_field_tag :busqueda, params[:busqueda], placeholder: "Buscador de recursos", class: "form-control", id: "buscador" %>
+                <button type="button" class="btn btn-success" id="boton-avanzado">Avanzado <span class="glyphicon <%= current_page?(root_path)?'glyphicon-chevron-up':'glyphicon-chevron-down' %> "></span></button>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Buscar</button>
               </div>
             <% end %>
         </div>
-        <div class="container" id="editor-input">
-          <div class="jumbotron">
-            <div class="row">
-              <div class="col-md-1">
-                <b>Ramo</b>
-              </div>
-              <div class="col-md-5">
-                <div class="input-group">
-                  <input type="text" class="form-control">
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Agregar</button>
-                  </span>
+        <div class="container" id="editor-input" <%= (!current_page?(root_path))?'style=display:none;':'' %> >
+            <div class="jumbotron">
+              <form class="form-horizontal">
+                <div class="form-group">
+                    <label for="ramoInput" class="col-md-2 control-label">Ramo</label>
+                    <div class="input-group col-md-10">
+                        <input type="text" class="form-control cursosinputAvanzado typeahead" name="busqueda[curso]" placeholder="Programación Avanzada (IIC2233)" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" id="agregarRamo">Agregar</button>
+                        </span>
+                    </div>
                 </div>
-              </div>
-              <div class="col-md-2">
-                <b>Semestre</b>
-              </div>
-              <div class="col-md-4">
-                <div class="input-group">
-                  <select class="form-control" name="archivo[semestre]">
-                    <option value="0">1er semestre</option>
-                    <option value="1">2do semestre</option>
-                    <option value="2">TAV</option>
-                  </select>
-                  <span class="input-group-btn">
-                    <button class="btn btn-default" type="button">Agregar</button>
-                  </span>
+                <div class="form-group">
+                    <label for="ano" class="col-md-2 control-label">Semestre y año</label>
+                    <div class="input-group col-md-10">
+                        <select class="form-control" name="archivo[semestre]">
+                            <option value="0">1er semestre</option>
+                            <option value="1">2do semestre</option>
+                            <option value="2">TAV</option>
+                        </select>
+                        <input type="number" name="busqueda[ano]" class="form-control" min="1980" max="<%= Time.now.year %>" id="ano" value="<%= Time.now.year %>" required>
+
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Agregar</button>
+                        </span>
+                    </div>
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              
-            </div>
+                <div class="form-group">
+                    <label for="profesor" class="col-md-2 control-label">Profesor</label>
+                    <div class="input-group col-md-10">
+                        <input type="text" class="form-control" id="profesor" name="busqueda[profesor]" placeholder="Benguria" required>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Agregar</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="tipo" class="col-md-2 control-label">Tipo</label>
+                    <div class="input-group col-md-10">
+                        <select class="form-control" id="tipo" name="busqueda[tipo]">
+                            <option value="0">Interrogación 1</option>
+                            <option value="1">Interrogación 2</option>
+                            <option value="2">Interrogación 3</option>
+                            <option value="3">Control</option>
+                            <option value="4">Ayudantia</option>
+                            <option value="5">Examen</option>
+                            <option value="6">Otro</option>
+                        </select>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button">Agregar</button>
+                        </span>
+                    </div>
+                </div>
+              </form>
           </div>
         </div>
       </div>
@@ -116,17 +137,54 @@
             $("#editor-input").slideToggle('fast',
                     function () {
                         $("#icono_chevron").toggleClass("icon-chevron-down icon-chevron-up");
+                        if($("#boton-avanzado span").hasClass("glyphicon-chevron-up")) {
+                            $("#boton-avanzado span").removeClass("glyphicon-chevron-up")
+                            $("#boton-avanzado span").addClass("glyphicon-chevron-down")
+                        }else {
+                            $("#boton-avanzado span").removeClass("glyphicon-chevron-down")
+                            $("#boton-avanzado span").addClass("glyphicon-chevron-up")
+                        }
                     }
             );
         });
-        $(".cursosinputavanzado").on('input', function() {
-            if($( this ).val()!="") {
-                $("#buscador").val("sigla:" + $(this).val());
+        $("#agregarRamo").click(function() {
+            if(cursos.indexOf($(".cursosinputAvanzado").val()) > -1) {
+                $("#buscador").val((($("#buscador").val()=="")?"":$("#buscador").val() + " ") + "sigla:" +  $(".cursosinputAvanzado").val().substring($(".cursosinputAvanzado").val().lastIndexOf("(") + 2, $(".cursosinputAvanzado").val().lastIndexOf(")") - 1) + " ");
             } else {
                 $("#buscador").val()
             }
+        });
+
+        <% @cursos = Curso.all%>
+        var cursos = [ <% @cursos.each do |curso| %>
+            <%= raw('"') + curso.nombre + ' ( ' + curso.sigla + ' )' + raw('"')  %>
+                <% if curso != @cursos.last %>
+                    ','
+                <% end %>
+        <% end %> ];
+
+        var engine = new Bloodhound({
+            //remote: '/cursos/index.json?q=%QUERY',
+            //prefetch: '/cursos/index.json',
+            datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
+            queryTokenizer: Bloodhound.tokenizers.whitespace,
+            local: $.map(cursos, function(cursos) { return { value: cursos }; })
+        });
+
+        // initialize the bloodhound suggestion engine
+        engine.initialize();
+
+        // instantiate the typeahead UI
+        $('.cursosinputAvanzado').typeahead(
+                {
+                    hint: false,
+                    highlight: true,
+                    minLength: 1
+                }, {
+            name: 'cursos',
+            displayKey: 'value',
+            source: engine.ttAdapter()
         })
     </script>
-</body>
 </body>
 </html>

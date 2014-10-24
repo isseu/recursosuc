@@ -1,12 +1,12 @@
 <table class="table table-hover">
   <thead>
-  <th>Nombre</th><th>Ramo</th><th>Año</th><th>Semestre</th><th>Profesor</th>
+  <th>Archivo</th><th>Ramo</th><th>Año</th><th>Semestre</th><th>Profesor</th>
   </thead>
   <tbody>
   <% @archivos.each do |archivo|  %>
       <tr>
         <td><span class="glyphicon glyphicon-file"></span> <%= link_to (int2tipo(archivo.tipo)), archivo %></td>
-        <td><%= archivo.curso.nombre + " - " + archivo.curso.sigla %></td>
+        <td><%= link_to (archivo.curso.nombre + ' - ' + archivo.curso.sigla), archivo.curso %></td>
         <td><%= archivo.ano %></td>
         <td><%= int2semestre(archivo.semestre) %></td>
         <td><%= archivo.profesor %></td>

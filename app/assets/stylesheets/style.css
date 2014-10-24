@@ -6,7 +6,7 @@ html, body {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    margin: 0 auto -80px;
+    margin: 0 auto -60px;
 }
 .navbar {
     padding-left: 10%;
@@ -25,7 +25,6 @@ html, body {
 }
 #editor-input {
     width: 99%;
-    display: none;
 }
 #editor-input .jumbotron {
     border-top-left-radius: 0px;
@@ -54,7 +53,7 @@ a, a:hover {
 	padding-left: 50px;
 }
 .contcontenido {
-    margin-top: 10px;
+    margin-top: -10px;
     width: 100%;
 }
 .panel {
@@ -120,8 +119,17 @@ a, a:hover {
     margin: 0;
 }
 #editor-input .jumbotron {
-    padding: 30px;
-    text-align: left;
+    padding: 15px;
+    padding-left: 30px;
+    padding-right: 30px;
+    text-align: center;
+}
+#editor-input label {
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+#editor-input .jumbotron .col-md-6 {
+    padding: 0px;
 }
 label {
     font-size: 15px;
