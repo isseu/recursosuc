@@ -75,6 +75,7 @@
                         </span>
                     </div>
                 </div>
+                <!--
                 <div class="form-group">
                     <label for="ano" class="col-md-2 control-label">Semestre y año</label>
                     <div class="input-group col-md-10">
@@ -89,13 +90,13 @@
                             <button class="btn btn-default" type="button">Agregar</button>
                         </span>
                     </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                     <label for="profesor" class="col-md-2 control-label">Profesor</label>
                     <div class="input-group col-md-10">
                         <input type="text" class="form-control" id="profesor" name="busqueda[profesor]" placeholder="Benguria" required>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Agregar</button>
+                            <button class="btn btn-default" id="agregarProfesor" type="button">Agregar</button>
                         </span>
                     </div>
                 </div>
@@ -109,10 +110,9 @@
                             <option value="3">Control</option>
                             <option value="4">Ayudantia</option>
                             <option value="5">Examen</option>
-                            <option value="6">Otro</option>
                         </select>
                         <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Agregar</button>
+                            <button class="btn btn-default" id="agregarTipo" type="button">Agregar</button>
                         </span>
                     </div>
                 </div>
@@ -146,6 +146,23 @@
                         }
                     }
             );
+        });
+        function tipo2otro(tipo) {
+            switch(parseInt(tipo)) {
+                case 0: return "I1";
+                case 1: return "I2";
+                case 2: return "I3";
+                case 3: return "Control";
+                case 4: return "Ayudantia";
+                case 5: return "Examen";
+                default: return "lol";
+            }
+        };
+        $("#agregarProfesor").click(function() {
+            $("#buscador").val((($("#buscador").val()=="")?"":$("#buscador").val() + " ") + "profesor:\"" +  $("#profesor").val() + "\" ");
+        });
+        $("#agregarTipo").click(function() {
+            $("#buscador").val((($("#buscador").val()=="")?"":$("#buscador").val() + " ") + "tipo:" +  tipo2otro($("#tipo").val()) + " ");
         });
         $("#agregarRamo").click(function() {
             if(cursos.indexOf($(".cursosinputAvanzado").val()) > -1) {
