@@ -3,10 +3,14 @@ class ArchivosController < ApplicationController
   before_action :set_archivo, only: [:show, :update, :edit, :destroy, :descargar]
 
   def index
-    if not params[:busqueda].nil? and params[:busqueda] != ''
-      # sacamos cosas clave
-      @archivos = Archivo.buscar(params[:busqueda])
-      render :buscar
+    if not params[:busqueda].nil?
+      if params[:busqueda] == ''
+        redirect_to root_url
+      else
+        # sacamos cosas clave
+        @archivos = Archivo.buscar(params[:busqueda])
+        render :buscar
+      end
     end
     @archivos = Archivo.all.order(created_at: :desc).limit(20)
     @archivos2 = Archivo.all.order(descargas: :desc).limit(20)

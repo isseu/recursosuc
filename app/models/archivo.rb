@@ -6,7 +6,7 @@ class Archivo < ActiveRecord::Base
   validates :user_id, presence: true
   validates :ano, presence: true
   validates :semestre, presence: true
-  validates :profesor, presence: true
+  validates :profesor, presence: true, length: { minimum: 5, too_long: "Nombre de profesor muy corto" }
   validates :tipo, presence: true
   validates :curso, presence: true
 
