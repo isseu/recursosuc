@@ -15,25 +15,50 @@ class Archivo < ActiveRecord::Base
 
   def self.buscar(busqueda)
     condiciones = []
-    #sigla = /((\s|^)sigla\:.+?(\s|$))/i.match(busqueda)
-    #if not sigla.nil?
-    #  conditions.push(["archivo.sigla LIKE ?", "%#{sigla['sigla']}%"])
-    #else
-    #  nil
-    #end
+    sigla = /(\s|^)sigla\:(?<sigla>.+?)(\s|$)/i.match(busqueda)
+    if not sigla.nil?
+      curso = Curso.where( ["cursos.sigla = ?", "%#{sigla['sigla'].upcase}" ]).first()
+      if not curso.nil?
+        condiciones.push(["archivos.curso_id = ?", curso.id])
+      end
+    else
+      nil
+    end
     tipo = /(\s|^)tipo\:(?<tipo>.+?)(\s|$)/i.match(busqueda)
-    busqueda
     if not tipo.nil?
-      condiciones.push(["archivos.tipo = ?", tipo['tipo']])
+      condiciones.push(["archivos.tipo = ?", string2tipo(tipo['tipo'])])
+    else
+      nil
+    end
+    profesor = /(\s|^)profesor\:"?(?<profesor>.+?)"?(\s|$)/i.match(busqueda)
+    if not profesor.nil?
+      condiciones.push(["archivos.profesor = ?", profesor['profesor']])
     else
       nil
     end
     #condiciones.push(["archivos.documento_file_name LIKE ?", "%#{busqueda}%"])
-    Archivo.where(conditions(condiciones))
+    return Archivo.where(conditions(condiciones)).order(ano: :desc, semestre: :desc)
   end
 
   private
-
+    def self.string2tipo(string)
+      case string
+        when "I1"
+          return 0
+        when "I2"
+          return 1
+        when "I3"
+          return 2
+        when "Control"
+          return 3
+        when "Ayudantia"
+          return 4
+        when "Examen"
+          return 5
+        else
+          return 6
+      end
+    end
     def self.conditions(condiciones)
       [conditions_clauses(condiciones).join(' AND '), *conditions_options(condiciones)]
     end

@@ -5,7 +5,7 @@ class ArchivosController < ApplicationController
   def index
     if not params[:busqueda].nil? and params[:busqueda] != ''
       # sacamos cosas clave
-      @archivos ||= Archivo.buscar(params[:busqueda])
+      @archivos = Archivo.buscar(params[:busqueda])
       render :buscar
     end
     @archivos = Archivo.all.order(created_at: :desc).limit(20)
