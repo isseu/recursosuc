@@ -1,4 +1,6 @@
 class Curso < ActiveRecord::Base
+  validates :nombre, uniqueness: { case_sensitive: false }
+  validates :sigla, uniqueness: { case_sensitive: false }
   has_many :archivos
 
   def self.buscar(busqueda)
