@@ -173,15 +173,10 @@
         });
 
         <% @cursos = Curso.all%>
-        var cursos = [ <% @cursos.each do |curso| %>
-            <%= raw('"') + curso.nombre + ' ( ' + curso.sigla + ' )' + raw('"')  %>
-                <% if curso != @cursos.last %>
-                    ','
-                <% end %>
-        <% end %> ];
+        var cursos = [ <% @cursos.each do |curso| %> <%= raw('"') + curso.nombre.mb_chars.downcase.capitalize + ' ( ' + curso.sigla + ' )' + raw('"')  %> <% if curso != @cursos.last %> <%= raw(',')%> <% end %> <% end %> ];
 
         var engine = new Bloodhound({
-            //remote: '/cursos/index.json?q=%QUERY',
+            //remote: '/cursos/index.json?busqueda=%QUERY',
             //prefetch: '/cursos/index.json',
             datumTokenizer: Bloodhound.tokenizers.obj.whitespace('value'),
             queryTokenizer: Bloodhound.tokenizers.whitespace,

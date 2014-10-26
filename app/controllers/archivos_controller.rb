@@ -39,6 +39,7 @@ class ArchivosController < ApplicationController
     match = /(?<curso>.+) \( (?<sigla>.+) \)/.match(params[:archivo][:curso])
     if match.nil?
       render :new, notice: 'Curso o ramo invalidos'
+      return
     end
     @archivo.curso = Curso.where(nombre: match['curso'], sigla: match['sigla']).first
     if @archivo.save

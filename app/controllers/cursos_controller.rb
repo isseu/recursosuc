@@ -1,8 +1,11 @@
 class CursosController < ApplicationController
   before_action :set_archivo, only: [:show]
   def index
-    @cursos = Curso.all
-
+    if not params[:busqueda].nil?
+      @cursos = Curso.buscar(params[:busqueda]).limit(15)
+    else
+      @cursos = Curso.all
+    end
   end
 
   def show
