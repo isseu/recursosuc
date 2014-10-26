@@ -53,7 +53,7 @@ a, a:hover {
 	padding-left: 50px;
 }
 .contcontenido {
-    margin-top: -10px;
+    margin-top: 20px;
     width: 100%;
 }
 .panel {
@@ -123,13 +123,11 @@ a, a:hover {
     padding-left: 30px;
     padding-right: 30px;
     text-align: center;
+    margin-bottom: 0px;
 }
 #editor-input label {
     padding-top: 1px;
     padding-bottom: 1px;
-}
-#editor-input .jumbotron .col-md-6 {
-    padding: 0px;
 }
 label {
     font-size: 15px;
