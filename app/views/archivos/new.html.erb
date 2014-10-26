@@ -52,12 +52,8 @@
 <% end %>
 <script>
     <% @cursos = Curso.all%>
-    var cursos = [ <% @cursos.each do |curso| %>
-        <%= raw('"') + curso.nombre + ' ( ' + curso.sigla + ' )' + raw('"')  %>
-            <% if curso != @cursos.last %>
-                ','
-            <% end %>
-    <% end %> ];
+    var cursos = [ <% @cursos.each do |curso| %> <%= raw('"') + curso.nombre.mb_chars.downcase.capitalize + ' ( ' + curso.sigla + ' )' + raw('"')  %> <% if curso != @cursos.last %> <%= raw(',')%> <% end %> <% end %> ];
+
 
     function validateSelection() {
         if(cursos.indexOf($("#ramoInput").val()) === -1) {

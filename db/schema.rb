@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141023211211) do
+ActiveRecord::Schema.define(version: 20141026183548) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(version: 20141023211211) do
     t.string   "curso"
     t.integer  "curso_id"
     t.integer  "descargas",              default: 0
+    t.string   "documento_fingerprint"
   end
 
   add_index "archivos", ["curso_id"], name: "index_archivos_on_curso_id", using: :btree

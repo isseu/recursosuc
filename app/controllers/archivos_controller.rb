@@ -36,15 +36,33 @@ class ArchivosController < ApplicationController
     @archivo = Archivo.new(archivo_params)
     @archivo.user = current_user
 
-    match = /(?<curso>.+) \( (?<sigla>.+) \)/.match(params[:archivo][:curso])
-    if match.nil?
-      render :new, notice: 'Curso o ramo invalidos'
+    # verificamos que no exista el archivo
+    buscarSiExiste = Archivo.where(documento_fingerprint: @archivo.documento_fingerprint).take
+    if not buscarSiExiste.nil?
+      flash[:notice] = "Este archivo #{view_context.link_to('ya existe', buscarSiExiste)} en la base de datos.".html_safe
+      render :new
       return
     end
-    @archivo.curso = Curso.where(nombre: match['curso'], sigla: match['sigla']).first
+
+    match = /(?<curso>.+) \( (?<sigla>.+) \)/.match(params[:archivo][:curso])
+    if match.nil?
+      flash[:notice] = 'Curso o sigla invalidos'
+      render :new
+      return
+    end
+
+    @archivo.curso = Curso.where(nombre: match['curso'].mb_chars.upcase, sigla: match['sigla'].upcase).first
+
+    if @archivo.curso.nil?
+      flash[:notice] = 'Curso o sigla invalidos'
+      render :new
+      return
+    end
+
     if @archivo.save
       redirect_to @archivo, notice: 'Archivo fue creado correctamente.'
     else
+      flash[:notice] = 'Error al guardar el archivo: ' + @archivo.errors.full_messages.join(", ")
       render :new
     end
   end
