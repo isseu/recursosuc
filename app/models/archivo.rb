@@ -59,6 +59,7 @@ class Archivo < ActiveRecord::Base
           return 6
       end
     end
+
     def self.conditions(condiciones)
       [conditions_clauses(condiciones).join(' AND '), *conditions_options(condiciones)]
     end

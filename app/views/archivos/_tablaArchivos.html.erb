@@ -6,7 +6,7 @@
   <% @archivos.each do |archivo|  %>
       <tr>
         <td><span class="glyphicon glyphicon-file"></span> <%= link_to (int2tipo(archivo.tipo)), archivo %></td>
-        <td><%= link_to (archivo.curso.nombre + ' - ' + archivo.curso.sigla), archivo.curso %></td>
+        <td><%= link_to (archivo.curso.nombre.mb_chars.downcase.capitalize  + ' - ' + archivo.curso.sigla), archivo.curso %></td>
         <td><%= archivo.ano %></td>
         <td><%= int2semestre(archivo.semestre) %></td>
         <td><%= archivo.profesor %></td>
