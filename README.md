@@ -17,8 +17,10 @@ Configurar servidor smtp en archivo enviroments para confirmación via email.
       enable_starttls_auto: true
   }
 ```
-Seedear la base de datos con `rake db:seed`.
+Migrar y rellenar la base de datos con `rake db:migrate db:seed`.
 
 
 El usuario y contraseña por defecto es `ejcorrea@uc.cl` - `mamamia123`. Debe
 ser cambiado inmediatamente en `http://sitio/users/edit`.
+
+### Demo: http://www.recursosuc.cl/
