@@ -19,7 +19,7 @@ class Archivo < ActiveRecord::Base
     condiciones = []
     sigla = /(\s|^)sigla\:(?<sigla>.+?)(\s|$)/i.match(busqueda)
     if not sigla.nil?
-      curso = Curso.where( ["cursos.sigla = ?", "%#{sigla['sigla'].upcase}" ]).first()
+      curso = Curso.where( ["cursos.sigla = ?", "#{sigla['sigla'].upcase}" ]).first()
       if not curso.nil?
         condiciones.push(["archivos.curso_id = ?", curso.id])
       end
