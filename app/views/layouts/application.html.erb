@@ -77,22 +77,6 @@
                         </span>
                     </div>
                 </div>
-                <!--
-                <div class="form-group">
-                    <label for="ano" class="col-md-2 control-label">Semestre y año</label>
-                    <div class="input-group col-md-10">
-                        <select class="form-control" name="archivo[semestre]">
-                            <option value="0">1er semestre</option>
-                            <option value="1">2do semestre</option>
-                            <option value="2">TAV</option>
-                        </select>
-                        <input type="number" name="busqueda[ano]" class="form-control" min="1980" max="<%= Time.now.year %>" id="ano" value="<%= Time.now.year %>" required>
-
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" type="button">Agregar</button>
-                        </span>
-                    </div>
-                </div> -->
                 <div class="form-group">
                     <label for="profesor" class="col-md-2 control-label">Profesor</label>
                     <div class="input-group col-md-10">
@@ -131,7 +115,7 @@
     <div id="footer">
       <div id="creditos">
         <hr>
-        <p class="text-muted"><small><a href="#">RecursosUC</a> © <%= Time.now.year %> | Este es un proyecto <a href="https://github.com/isseu/recursosuc">Open Source</a> </small> </p>
+        <p class="text-muted"><small><a href="#">RecursosUC</a> © <%= Time.now.year %> | Este es un proyecto <a href="<%= APPCONFIG['url_github'] %>>">Open Source</a> </small> </p>
       </div>
     </div>
     <script>

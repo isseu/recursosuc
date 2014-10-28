@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'errors_controller/error404'
+
   get 'cursos/index'
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -14,6 +16,7 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'archivos#index'
 
+  match "/404" => "errors#error404", via: [ :get, :post, :patch, :delete ]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
