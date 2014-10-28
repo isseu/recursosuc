@@ -35,6 +35,7 @@ class ArchivosController < ApplicationController
   def create
     @archivo = Archivo.new(archivo_params)
     @archivo.user = current_user
+    @archivo.profesor = @archivo.profesor.titleize # a mayusculas y mas bonito
 
     # verificamos que no exista el archivo
     buscarSiExiste = Archivo.where(documento_fingerprint: @archivo.documento_fingerprint).take
