@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   root 'archivos#index'
 
 
-
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

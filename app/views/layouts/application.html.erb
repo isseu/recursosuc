@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
 
@@ -56,11 +57,12 @@
         <% end %>
         <div class="row">
             <%= form_tag archivos_path, :method => 'get', class: "form-inline", role: "form" do %>
-              <div class="input-group-btn">
+              <div class="input-group col-md-12">
                 <%= text_field_tag :busqueda, params[:busqueda], placeholder: "Buscador de recursos", class: "form-control", id: "buscador" %>
+              <div class="input-group-btn" style="width: 192px">
                 <button type="button" class="btn btn-success" id="boton-avanzado">Avanzado <span class="glyphicon <%= current_page?(root_path)?'glyphicon-chevron-up':'glyphicon-chevron-down' %> "></span></button>
                 <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-search"></span> Buscar</button>
-              </div>
+              </div></div>
             <% end %>
         </div>
         <div class="container" id="editor-input" <%= (!current_page?(root_path))?'style=display:none;':'' %> >

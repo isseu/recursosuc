@@ -22,8 +22,6 @@ ActiveRecord::Schema.define(version: 20141026183548) do
     t.string   "extension"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "titulo"
-    t.text     "descripcion"
     t.string   "documento_file_name"
     t.string   "documento_content_type"
     t.integer  "documento_file_size"
@@ -32,7 +30,6 @@ ActiveRecord::Schema.define(version: 20141026183548) do
     t.integer  "semestre"
     t.integer  "ano"
     t.integer  "tipo"
-    t.string   "curso"
     t.integer  "curso_id"
     t.integer  "descargas",              default: 0
     t.string   "documento_fingerprint"
@@ -65,6 +62,7 @@ ActiveRecord::Schema.define(version: 20141026183548) do
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
+    t.string   "unconfirmed_email"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

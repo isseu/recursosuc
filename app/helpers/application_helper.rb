@@ -34,6 +34,9 @@ module ApplicationHelper
     end
   end
   def quitararrobauc(string)
+    if string == "ejcorrea@uc.cl"
+      return "admin"
+    end
     return string.gsub("@uc.cl", "").gsub("@puc.cl", "")
   end
 end
