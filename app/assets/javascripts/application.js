@@ -15,6 +15,5 @@
 //= require twitter/bootstrap
 //= require typeahead.jquery
 //= require bloodhound
-//= require google_analytics
 //= require turbolinks
 //= require_tree .
