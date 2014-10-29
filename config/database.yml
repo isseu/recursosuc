@@ -81,6 +81,6 @@ test:
 #
 production:
   <<: *default
-  database: recursosuc_production
-  username: recursosuc
+  database: recursosuc
+  username: root
   password: <%= ENV['RECURSOSUC_DATABASE_PASSWORD'] %>

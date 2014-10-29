@@ -40,8 +40,8 @@ module Recursosuc
         address:              'smtp.gmail.com',
         port:                 587,
         domain:               'gmail.com',
-        user_name:            '',
-        password:             '',
+        user_name:            ENV['USERNAME_GMAIL'],
+        password:             ENV['PASSWORD_GMAIL'],
         authentication:       'plain',
         enable_starttls_auto: true
     }
