@@ -33,7 +33,7 @@ module Recursosuc
     config.serve_static_assets = true # heroku
 
 
-    config.action_mailer.default_url_options = { host: 'localhost:3000' }
+    config.action_mailer.default_url_options = { host: 'recursosuc.cl' }
     Paperclip.options[:command_path] = '/usr/local/bin/'
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.smtp_settings = {
