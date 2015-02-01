@@ -4,6 +4,7 @@
 import urllib2
 import re
 from titlecase import titlecase
+import unicodedata
 
 cursos = []
 data = urllib2.urlopen("http://catalogo.uc.cl/index.php?Itemid=55").read().replace("\n", "")
@@ -16,8 +17,9 @@ for item in tabla:
 		if sigla_seccion[0] not in [i[1] for i in cursos]:
 			cursos.append([res.group(1), sigla_seccion[0], res.group(3)])
 
+
 print "# Encontrados " + str(len(cursos)) + " cursos: "
 for item in cursos:
-	print "Curso.create!(nombre: \"%s\", sigla: \"%s\")" % (item[2], item[1])
+	print "Curso.create!(nombre: \"%s\", sigla: \"%s\")" % (titlecase(item[2].decode('utf-8').lower()), item[1])
 
 
